@@ -502,14 +502,21 @@ body {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #0071e3, #af52de);
-  color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 4px 14px var(--accent-blue-glow);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.95rem;
-  font-weight: 700;
-  box-shadow: 0 4px 14px var(--accent-blue-glow);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+}
+
+.brand-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
 }
 
 .app-brand-name {
@@ -880,31 +887,45 @@ body {
 
 .profile-avatar-large {
   position: relative;
-  width: 78px;
-  height: 78px;
+  width: 86px;
+  height: 86px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #0a84ff, #bf5af2);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: 700;
-  box-shadow: 0 8px 28px var(--accent-blue-glow);
+  box-shadow: 0 8px 28px rgba(0, 113, 227, 0.28), var(--glass-inner-sheen);
   flex-shrink: 0;
-  border: 2px solid rgba(255, 255, 255, 0.35);
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  background: var(--glass-surface);
+  transition: transform var(--transition-smooth);
+}
+
+[data-theme="dark"] .profile-avatar-large {
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 28px rgba(10, 132, 255, 0.35);
+}
+
+.profile-avatar-large:hover {
+  transform: scale(1.04);
+}
+
+.avatar-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  display: block;
 }
 
 .status-indicator-ring {
   position: absolute;
-  bottom: 2px;
-  right: 2px;
+  bottom: 1px;
+  right: 1px;
   width: 18px;
   height: 18px;
   background: var(--accent-green);
   border: 3px solid var(--bg-canvas);
   border-radius: 50%;
   box-shadow: 0 0 8px var(--accent-green-glow);
+  z-index: 2;
 }
 
 .profile-title-block {
