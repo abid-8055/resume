@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const directPdfBtn = document.getElementById('direct-pdf-btn');
   const headerPdfBtn = document.getElementById('header-pdf-btn');
   const appThemeBtn = document.getElementById('app-theme-btn');
-  const toastContainer = document.getElementById('toast-container');
   const navTabs = document.querySelectorAll('.nav-tab');
   const sections = document.querySelectorAll('.content-section');
   const featureCards = document.querySelectorAll('.feature-card');
@@ -33,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('user_theme', newTheme);
-    showToast(`Switched to ${newTheme === 'light' ? 'Light Frosted Glass' : 'Dark Glass'} Theme`);
   };
 
   if (appThemeBtn) appThemeBtn.addEventListener('click', toggleTheme);
@@ -112,35 +110,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // =========================================================================
   // 4. AUTO-COPY CONTACT BUTTONS (EMAIL & PHONE) & RESUME DOWNLOADS
+  // Features:
+  // - Clicking Email or Phone copies text directly to clipboard
+  // - Shows clean, compact "Done" feedback inside the button's own popup tooltip
+  // - No invasive screen notifications
   // =========================================================================
   const autoCopyBtns = document.querySelectorAll('.auto-copy-btn');
   autoCopyBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
       const textToCopy = btn.getAttribute('data-copy');
       if (!textToCopy) return;
 
       navigator.clipboard.writeText(textToCopy).then(() => {
-        showToast(`Copied ${textToCopy} to clipboard!`);
-
         const popupText = btn.querySelector('.copy-popup-text');
         const popupIcon = btn.querySelector('.copy-popup-icon');
         btn.classList.add('copied');
-        if (popupText) popupText.textContent = 'Copied!';
+        if (popupText) popupText.textContent = 'Done';
         if (popupIcon) popupIcon.textContent = '✓';
 
         setTimeout(() => {
           btn.classList.remove('copied');
           if (popupText) popupText.textContent = 'Click to copy';
           if (popupIcon) popupIcon.textContent = '📋';
-        }, 2000);
+        }, 1600);
       }).catch(() => {
-        showToast('Failed to copy to clipboard. Please select manually.');
+        // Fallback silently
       });
     });
   });
 
   const triggerPdfDownload = () => {
-    showToast("Opening Resume PDF...");
     const link = document.createElement('a');
     link.href = PDF_PATH;
     link.download = "Abid_Siddiqui_Resume.pdf";
@@ -152,24 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (directPdfBtn) directPdfBtn.addEventListener('click', triggerPdfDownload);
   if (headerPdfBtn) headerPdfBtn.addEventListener('click', triggerPdfDownload);
-
-  // Toast Function
-  function showToast(message) {
-    if (!toastContainer) return;
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-      <span>${message}</span>
-    `;
-    toastContainer.appendChild(toast);
-    setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateY(10px) scale(0.96)';
-      toast.style.transition = 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
-      setTimeout(() => toast.remove(), 300);
-    }, 3000);
-  }
 
   // =========================================================================
   // 5. SCROLL-DRIVEN LIQUID AURORA MESH & INTERACTIVE CONSTELLATION NETWORK
