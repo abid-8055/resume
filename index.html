@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abid Siddiqui — Cybersecurity Analyst Level 2 | Resume & Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='22' fill='%234285F4'/%3E%3Ctext x='50%25' y='55%25' font-size='20' font-family='sans-serif' font-weight='bold' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'%3EAS%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- Ambient Background Particles Canvas -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- ==================================================== -->
+  <!-- 1. AUTHENTICATION & PROFILE ENTRY VIEW               -->
+  <!-- ==================================================== -->
+  <main id="auth-view" class="view-screen active">
+    <!-- Top Theme Switcher / Status -->
+    <div class="auth-top-bar">
+      <div class="brand-pill">
+        <span class="badge-dot"></span>
+        <span>Secure Profile Portal</span>
+      </div>
+      <div class="top-actions">
+        <button id="theme-toggle-btn" class="icon-btn" title="Toggle Theme" aria-label="Toggle Theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Sign-in Card -->
+    <div class="auth-container">
+      <div class="auth-card" id="auth-card">
+        <!-- Badge Header -->
+        <div class="auth-header">
+          <div class="portal-logo-wrapper">
+            <div class="portal-logo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <span class="portal-tag">PORTFOLIO ACCESS</span>
+          </div>
+          <h1 class="auth-title">Sign in</h1>
+          <p class="auth-subtitle">to continue to <strong>Abid Siddiqui's Cybersecurity & IAM Profile</strong></p>
+        </div>
+
+        <!-- Verified Account Card -->
+        <div class="account-selector" id="account-pill">
+          <div class="account-avatar-wrapper">
+            <div class="account-avatar">
+              <span>AS</span>
+            </div>
+            <div class="online-indicator"></div>
+          </div>
+          <div class="account-info">
+            <div class="account-name-row">
+              <span class="account-name">Abid Siddiqui</span>
+              <span class="verified-badge" title="Verified Profile">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </span>
+            </div>
+            <span class="account-email">abidsiddiqui2002@gmail.com</span>
+            <span class="account-role">Cybersecurity Analyst Level 2 • Wipro</span>
+          </div>
+        </div>
+
+        <!-- Quick Credentials / Summary Box -->
+        <div class="auth-status-box">
+          <div class="status-row">
+            <span class="status-label">Current Role:</span>
+            <span class="status-val highlight">Cybersecurity Analyst Level 2</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Focus Area:</span>
+            <span class="status-val">User Access Management (UAM / IAM)</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Location:</span>
+            <span class="status-val">Bengaluru, Karnataka, India</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Education:</span>
+            <span class="status-val">B.CS • Reva University (2023)</span>
+          </div>
+          <div class="status-row">
+            <span class="status-label">Certifications:</span>
+            <span class="status-val badge-green">Microsoft MAT Certified</span>
+          </div>
+        </div>
+
+        <!-- Auth Actions -->
+        <div class="auth-actions">
+          <button id="authenticate-btn" class="btn btn-primary btn-portal">
+            <span class="btn-ripple"></span>
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
+            <span class="btn-text">Enter Profile & Resume</span>
+          </button>
+          
+          <div class="pdf-sub-action">
+            <button id="direct-pdf-btn" class="btn btn-sm btn-subtle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              <span>Download PDF Resume</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Auth Card Footer -->
+        <div class="auth-card-footer">
+          <span>Verified Professional Portfolio • Bengaluru, Karnataka</span>
+        </div>
+      </div>
+
+      <!-- Auth Page Bottom Footer -->
+      <div class="auth-global-footer">
+        <div class="footer-lang">
+          <select aria-label="Language Selector">
+            <option>English (United States)</option>
+            <option>English (India)</option>
+          </select>
+        </div>
+        <div class="footer-links">
+          <a href="#about" id="footer-quick-view">Quick View</a>
+          <a href="mailto:abidsiddiqui2002@gmail.com">Contact Email</a>
+          <a href="tel:+919008433790">+91-9008433790</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================================================== -->
+  <!-- 2. RESUME DASHBOARD VIEW                             -->
+  <!-- ==================================================== -->
+  <div id="app-view" class="view-screen">
+    <!-- Main Navigation Bar -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="logo-group" id="return-auth-btn" title="Back to Portal">
+          <div class="brand-monogram">AS</div>
+          <span class="app-brand-name">Abid Siddiqui <span class="brand-sub">Cybersecurity & IAM Portfolio</span></span>
+        </div>
+      </div>
+
+      <nav class="header-nav">
+        <button class="nav-tab active" data-target="section-overview">Overview</button>
+        <button class="nav-tab" data-target="section-experience">Experience</button>
+        <button class="nav-tab" data-target="section-skills">Skills & Arsenal</button>
+        <button class="nav-tab" data-target="section-education">Education & Certs</button>
+      </nav>
+
+      <div class="header-right">
+        <button id="header-pdf-btn" class="btn btn-sm btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          <span>PDF Resume</span>
+        </button>
+        <button id="app-theme-btn" class="icon-btn" title="Toggle Dark/Light">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <div class="user-profile-badge" id="profile-modal-btn">
+          <div class="user-avatar-sm">AS</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Dashboard Content -->
+    <div class="dashboard-body">
+      <!-- SECTION 1: OVERVIEW -->
+      <section id="section-overview" class="content-section active">
+        <!-- Hero Banner -->
+        <div class="hero-grid">
+          <div class="hero-card main-profile-card">
+            <div class="profile-header-strip">
+              <div class="profile-avatar-large">
+                <span>AS</span>
+                <span class="status-indicator-ring"></span>
+              </div>
+              <div class="profile-title-block">
+                <div class="name-badge-row">
+                  <h1 class="user-display-name">Abid Siddiqui</h1>
+                  <span class="role-pill">Cybersecurity Analyst Level 2</span>
+                </div>
+                <p class="user-tagline">Cybersecurity Analyst Level 2 • User Access Management (UAM) • IAM Specialist • Computer Science Graduate</p>
+                <div class="meta-tags-row">
+                  <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    Bengaluru, Karnataka, India
+                  </span>
+                  <span class="meta-item highlight">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                    Wipro Technologies
+                  </span>
+                  <span class="meta-item">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+                    Reva University (2023)
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-bio-text">
+              <p>
+                Dedicated <strong>Cybersecurity Analyst Level 2</strong> at Wipro Technologies with a Bachelor in Computer Science, specializing in <strong>User Access Management (UAM)</strong> and Identity & Access Management (IAM) governance. Advanced from SD Administrator with proven expertise in enforcing the Principle of Least Privilege, granular Role-Based Access Control (RBAC), privileged access lifecycle management, and quarterly access recertifications. Proven background in resolving authentication & identity bottlenecks, adhering to strict SLAs, and maintaining compliance across enterprise IT environments.
+              </p>
+            </div>
+
+            <!-- Quick Action Contact Row -->
+            <div class="profile-cta-row">
+              <a href="mailto:abidsiddiqui2002@gmail.com" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span>abidsiddiqui2002@gmail.com</span>
+              </a>
+              <a href="tel:+919008433790" class="btn btn-secondary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span>+91-9008433790</span>
+              </a>
+              <button class="btn btn-outline" id="copy-details-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span id="copy-btn-text">Copy Contact Info</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Performance & Highlights -->
+          <div class="hero-card telemetry-card">
+            <div class="card-title-row">
+              <span class="card-icon">⚡</span>
+              <h3>Performance Highlights</h3>
+              <span class="live-pulse">ACTIVE</span>
+            </div>
+            
+            <div class="metrics-grid">
+              <div class="metric-box">
+                <span class="metric-number">2+</span>
+                <span class="metric-label">Years IT & Security Experience</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-number highlight-blue">99.8%</span>
+                <span class="metric-label">Access Provisioning & SLA Adherence</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-number highlight-green">2</span>
+                <span class="metric-label">Microsoft MAT Certifications</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-number highlight-purple">7+</span>
+                <span class="metric-label">Languages & Security Stacks</span>
+              </div>
+            </div>
+
+            <div class="telemetry-bar">
+              <div class="bar-header">
+                <span>User Access Governance & Provisioning Readiness</span>
+                <span class="bar-pct">100%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured Highlights Grid -->
+        <div class="cards-grid-3">
+          <div class="feature-card" data-jump="section-experience">
+            <div class="feature-header">
+              <div class="feature-icon bg-blue">🛡️</div>
+              <div>
+                <h4>Current Role</h4>
+                <span class="feature-sub">Cybersecurity Analyst L2 @ Wipro</span>
+              </div>
+            </div>
+            <p>Specializing in User Access Management (UAM), RBAC enforcement, privileged access workflows, and access audit reviews.</p>
+            <span class="card-arrow">Explore Experience →</span>
+          </div>
+
+          <div class="feature-card" data-jump="section-skills">
+            <div class="feature-header">
+              <div class="feature-icon bg-purple">🛠️</div>
+              <div>
+                <h4>Core Stacks</h4>
+                <span class="feature-sub">UAM/IAM, RBAC, PAM, Python, SQL</span>
+              </div>
+            </div>
+            <p>End-to-end user lifecycle management, identity governance, access audits, system diagnostics, and scripting.</p>
+            <span class="card-arrow">View Skills Matrix →</span>
+          </div>
+
+          <div class="feature-card" data-jump="section-education">
+            <div class="feature-header">
+              <div class="feature-icon bg-green">🎓</div>
+              <div>
+                <h4>Certifications & Degree</h4>
+                <span class="feature-sub">B.CS & Microsoft Associate</span>
+              </div>
+            </div>
+            <p>Bachelor in Computer Science from Reva University (2023) + dual Microsoft MAT certifications in Web & Databases.</p>
+            <span class="card-arrow">View Credentials →</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: EXPERIENCE -->
+      <section id="section-experience" class="content-section">
+        <div class="section-title-wrap">
+          <div class="section-title-icon">💼</div>
+          <div>
+            <h2>Work Experience</h2>
+            <p class="section-subtitle">Track record in Cybersecurity Analysis, User Access Management (UAM/IAM), & IT Systems Engineering</p>
+          </div>
+        </div>
+
+        <div class="timeline-container">
+          <!-- Item 1: Wipro - Cybersecurity Analyst Level 2 -->
+          <div class="timeline-card current-role">
+            <div class="timeline-marker">
+              <div class="marker-dot"></div>
+              <div class="marker-line"></div>
+            </div>
+            <div class="timeline-content">
+              <div class="role-header">
+                <div>
+                  <div class="role-badge-row">
+                    <h3 class="role-title">Cybersecurity Analyst Level 2</h3>
+                    <span class="status-chip current">Present Role</span>
+                  </div>
+                  <h4 class="company-name">Wipro Technologies <span class="location-text">• Bengaluru, Karnataka, India</span></h4>
+                </div>
+                <div class="role-period">
+                  <span class="date-badge">May 2026 — Present</span>
+                </div>
+              </div>
+
+              <div class="role-body">
+                <p class="role-summary">
+                  Serving as Cybersecurity Analyst Level 2 specializing in User Access Management (UAM) and Identity & Access Management (IAM) governance across enterprise systems, cloud platforms, and critical business applications.
+                </p>
+                <ul class="bullet-list">
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>User Lifecycle & Access Provisioning:</strong> Administer end-to-end user access lifecycle operations including onboarding, role modifications, transfers, and immediate de-provisioning across Active Directory, Azure AD / Entra ID, and cloud applications.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Role-Based Access Control (RBAC):</strong> Enforce the Principle of Least Privilege by designing, auditing, and maintaining granular RBAC models, security group memberships, and Segregation of Duties (SoD) policies.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Privileged Access Management (PAM):</strong> Manage elevated administrative credentials, time-bound privileged accounts, and emergency break-glass requests while ensuring rigorous audit trails.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Access Certification & Compliance Auditing:</strong> Drive regular user access recertification campaigns (UAR), identify and remediate orphaned or dormant accounts, and ensure alignment with enterprise compliance standards.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Incident & Access Troubleshooting:</strong> Diagnose and resolve complex access-related incidents, SSO/MFA authentication bottlenecks, and permission conflicts with >99% SLA adherence.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Security Documentation & SOPs:</strong> Develop and maintain Standard Operating Procedures (SOPs) for user access management workflows, escalation paths, and identity governance controls.</span>
+                  </li>
+                </ul>
+
+                <div class="tech-stack-row">
+                  <span class="chip">User Access Management (UAM)</span>
+                  <span class="chip">Identity & Access Management (IAM)</span>
+                  <span class="chip">Role-Based Access Control (RBAC)</span>
+                  <span class="chip">Privileged Access Management (PAM)</span>
+                  <span class="chip">Active Directory & Azure AD</span>
+                  <span class="chip">Access Certification & Audits</span>
+                  <span class="chip">MFA & SSO</span>
+                  <span class="chip">ITSM Access Provisioning</span>
+                  <span class="chip">Segregation of Duties (SoD)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2: Wipro - SD Administrator -->
+          <div class="timeline-card">
+            <div class="timeline-marker">
+              <div class="marker-dot"></div>
+              <div class="marker-line"></div>
+            </div>
+            <div class="timeline-content">
+              <div class="role-header">
+                <div>
+                  <div class="role-badge-row">
+                    <h3 class="role-title">SD Administrator</h3>
+                  </div>
+                  <h4 class="company-name">Wipro Technologies <span class="location-text">• Bengaluru, Karnataka, India</span></h4>
+                </div>
+                <div class="role-period">
+                  <span class="date-badge">May 2025 — May 2026</span>
+                </div>
+              </div>
+
+              <div class="role-body">
+                <p class="role-summary">
+                  Served as SD Administrator delivering high-availability support, incident resolution, and infrastructure health monitoring across enterprise environments.
+                </p>
+                <ul class="bullet-list">
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Hardware, Software & Network Diagnostics:</strong> Diagnosed and resolved complex Tier 1 & Tier 2 hardware faults, operating system glitches, and network connectivity bottlenecks.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Support Ticket Lifecycle Management:</strong> Managed support tickets from intake to root-cause resolution, consistently exceeding SLA performance thresholds.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Multi-Channel Remote Troubleshooting:</strong> Provided real-time troubleshooting via secure remote desktop protocols, phone dispatch, and asynchronous ticketing channels.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>IT Infrastructure Monitoring & Escalation:</strong> Proactively observed server, workstation, and network telemetry; rapidly escalated critical incidents to Tier 3 engineering teams.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Knowledge Base Engineering:</strong> Standardized and documented technical remediation procedures and standard operating procedures (SOPs) into internal knowledge bases.</span>
+                  </li>
+                </ul>
+
+                <div class="tech-stack-row">
+                  <span class="chip">ITSM Ticketing</span>
+                  <span class="chip">Remote Desktop Diagnostics</span>
+                  <span class="chip">Network Troubleshooting</span>
+                  <span class="chip">Infrastructure Telemetry</span>
+                  <span class="chip">SLA Adherence</span>
+                  <span class="chip">Knowledge Base Documentation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3: Cameo Global INC - IT Analyst -->
+          <div class="timeline-card">
+            <div class="timeline-marker">
+              <div class="marker-dot"></div>
+              <div class="marker-line"></div>
+            </div>
+            <div class="timeline-content">
+              <div class="role-header">
+                <div>
+                  <div class="role-badge-row">
+                    <h3 class="role-title">IT Analyst</h3>
+                  </div>
+                  <h4 class="company-name">Cameo Global INC <span class="location-text">• Bengaluru, Karnataka, India</span></h4>
+                </div>
+                <div class="role-period">
+                  <span class="date-badge">November 2023 — February 2025</span>
+                </div>
+              </div>
+
+              <div class="role-body">
+                <p class="role-summary">
+                  Delivered dedicated IT analysis, remote desktop troubleshooting, and customer case lifecycle management for global corporate clients.
+                </p>
+                <ul class="bullet-list">
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Inbound Service Calls & Remote Tech Support:</strong> Handled high-volume inbound service inquiries, diagnosing diverse technical challenges with high first-contact resolution rates.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Case Management from Initial Contact:</strong> Owned customer support incidents end-to-end, maintaining high touchpoint cadence and client trust.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Client Communication Excellence:</strong> Maintained articulate, transparent, and empathetic communication across international client bases.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Remote Diagnostics Tooling:</strong> Utilized secure remote desktop suites to investigate file system corruption, network misconfigurations, and software conflicts.</span>
+                  </li>
+                  <li>
+                    <span class="bullet-icon">▸</span>
+                    <span><strong>Ticket Auditing & Metric Tracking:</strong> Logged and categorized all user interactions and diagnostic steps within enterprise ticket management ecosystems.</span>
+                  </li>
+                </ul>
+
+                <div class="tech-stack-row">
+                  <span class="chip">Case Management</span>
+                  <span class="chip">Inbound Service Support</span>
+                  <span class="chip">Remote Diagnostics</span>
+                  <span class="chip">Client Communication</span>
+                  <span class="chip">Incident Logging</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: SKILLS -->
+      <section id="section-skills" class="content-section">
+        <div class="section-title-wrap">
+          <div class="section-title-icon">⚡</div>
+          <div>
+            <h2>Skills & Technical Arsenal</h2>
+            <p class="section-subtitle">Comprehensive blend of Cybersecurity, User Access Management (UAM), IT operations, and software development capabilities</p>
+          </div>
+        </div>
+
+        <div class="skills-layout-grid">
+          <!-- Programming & Development -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="cat-icon bg-blue">💻</div>
+              <div>
+                <h3>Programming & Scripting</h3>
+                <span>Languages, syntax & data queries</span>
+              </div>
+            </div>
+            
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-meta">
+                  <span class="skill-name">Python</span>
+                  <span class="skill-level">Automation & Scripting</span>
+                </div>
+                <div class="skill-bar"><div class="bar-fill" style="width: 85%;"></div></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-meta">
+                  <span class="skill-name">Java</span>
+                  <span class="skill-level">Core OOP & Applications</span>
+                </div>
+                <div class="skill-bar"><div class="bar-fill" style="width: 80%;"></div></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-meta">
+                  <span class="skill-name">C & C++</span>
+                  <span class="skill-level">Data Structures & Systems</span>
+                </div>
+                <div class="skill-bar"><div class="bar-fill" style="width: 80%;"></div></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-meta">
+                  <span class="skill-name">SQL</span>
+                  <span class="skill-level">Relational Databases & Queries</span>
+                </div>
+                <div class="skill-bar"><div class="bar-fill" style="width: 88%;"></div></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-meta">
+                  <span class="skill-name">HTML & CSS</span>
+                  <span class="skill-level">Microsoft MAT Certified</span>
+                </div>
+                <div class="skill-bar"><div class="bar-fill" style="width: 90%;"></div></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-meta">
+                  <span class="skill-name">Kotlin</span>
+                  <span class="skill-level">Modern App Development</span>
+                </div>
+                <div class="skill-bar"><div class="bar-fill" style="width: 75%;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cybersecurity & User Access Management -->
+          <div class="skill-category-card">
+            <div class="category-header">
+              <div class="cat-icon bg-purple">🛡️</div>
+              <div>
+                <h3>Cybersecurity & User Access Management</h3>
+                <span>Identity governance, access security & operational excellence</span>
+              </div>
+            </div>
+
+            <div class="tags-cloud">
+              <div class="interactive-tag">
+                <span class="tag-icon">🔑</span>
+                <span class="tag-title">User Access Management (UAM)</span>
+                <span class="tag-desc">End-to-end user provisioning, role changes & de-provisioning</span>
+              </div>
+              <div class="interactive-tag">
+                <span class="tag-icon">🛡️</span>
+                <span class="tag-title">Role-Based Access Control (RBAC)</span>
+                <span class="tag-desc">Principle of least privilege & security group policies</span>
+              </div>
+              <div class="interactive-tag">
+                <span class="tag-icon">🔐</span>
+                <span class="tag-title">Privileged Access Management (PAM)</span>
+                <span class="tag-desc">Elevated credentials & break-glass access governance</span>
+              </div>
+              <div class="interactive-tag">
+                <span class="tag-icon">📋</span>
+                <span class="tag-title">Access Certification & Audits</span>
+                <span class="tag-desc">User access reviews (UAR) & orphaned account cleanup</span>
+              </div>
+              <div class="interactive-tag">
+                <span class="tag-icon">🏢</span>
+                <span class="tag-title">Active Directory & Azure AD (Entra ID)</span>
+                <span class="tag-desc">Enterprise directory services & identity infrastructure</span>
+              </div>
+              <div class="interactive-tag">
+                <span class="tag-icon">🔒</span>
+                <span class="tag-title">Authentication & SSO / MFA</span>
+                <span class="tag-desc">Multi-factor security & single sign-on troubleshooting</span>
+              </div>
+              <div class="interactive-tag">
+                <span class="tag-icon">🎫</span>
+                <span class="tag-title">ITSM Ticket & SLA Governance</span>
+                <span class="tag-desc">SLA monitoring, incident triage & root-cause closure</span>
+              </div>
+              <div class="interactive-tag">
+                <span class="tag-icon">📚</span>
+                <span class="tag-title">Security SOPs & Knowledge Base</span>
+                <span class="tag-desc">Standard operating procedures & compliance docs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: EDUCATION & CERTIFICATIONS -->
+      <section id="section-education" class="content-section">
+        <div class="section-title-wrap">
+          <div class="section-title-icon">🎓</div>
+          <div>
+            <h2>Education & Certifications</h2>
+            <p class="section-subtitle">Academic foundations and verified industry accreditations</p>
+          </div>
+        </div>
+
+        <div class="cards-grid-2">
+          <!-- Academic Degree -->
+          <div class="credential-card degree-card">
+            <div class="credential-badge-icon">🏛️</div>
+            <div class="credential-details">
+              <span class="cred-type">Degree Program</span>
+              <h3 class="cred-title">Bachelor in Computer Science</h3>
+              <h4 class="cred-org">Reva University, Bengaluru</h4>
+              <p class="cred-date">Year of Completion: <strong>2023</strong></p>
+              <p class="cred-desc">
+                Rigorous computer science curriculum covering Operating Systems, Computer Networks, Database Management Systems (DBMS), Data Structures & Algorithms, Object-Oriented Programming, and Software Engineering.
+              </p>
+              <div class="cred-tags">
+                <span class="chip">Computer Science</span>
+                <span class="chip">Algorithms & Systems</span>
+                <span class="chip">Computer Networks</span>
+                <span class="chip">DBMS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Microsoft Cert 1 -->
+          <div class="credential-card cert-card">
+            <div class="credential-badge-icon ms-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32"><path fill="#f25022" d="M1 1h10v10H1z"/><path fill="#00a4ef" d="M1 13h10v10H1z"/><path fill="#7fba00" d="M13 1h10v10H13z"/><path fill="#ffb900" d="M13 13h10v10H13z"/></svg>
+            </div>
+            <div class="credential-details">
+              <span class="cred-type">Microsoft Accreditation</span>
+              <h3 class="cred-title">Certificate by Microsoft Associate Technology (MAT) in HTML and CSS</h3>
+              <h4 class="cred-org">Microsoft Technology Associate</h4>
+              <p class="cred-desc">
+                Verified proficiency in modern responsive web markup, semantic HTML5 structure, CSS styling paradigms, and frontend interface fundamentals.
+              </p>
+              <div class="verified-pill">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <span>Verified Credential</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Microsoft Cert 2 -->
+          <div class="credential-card cert-card full-width-card">
+            <div class="credential-badge-icon ms-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32"><path fill="#f25022" d="M1 1h10v10H1z"/><path fill="#00a4ef" d="M1 13h10v10H1z"/><path fill="#7fba00" d="M13 1h10v10H13z"/><path fill="#ffb900" d="M13 13h10v10H13z"/></svg>
+            </div>
+            <div class="credential-details">
+              <span class="cred-type">Microsoft Accreditation</span>
+              <h3 class="cred-title">Certificate by Microsoft Associate Technology (MAT) in Database Administration Fundamentals</h3>
+              <h4 class="cred-org">Microsoft Technology Associate</h4>
+              <p class="cred-desc">
+                Core competencies in relational database concepts, SQL queries, database security, backup and recovery strategies, and database server maintenance.
+              </p>
+              <div class="verified-pill">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <span>Verified Credential</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Quick Footer Bar -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <div class="footer-left">
+          <span>Abid Siddiqui • Cybersecurity Analyst Level 2</span>
+          <span class="sep">•</span>
+          <a href="mailto:abidsiddiqui2002@gmail.com">abidsiddiqui2002@gmail.com</a>
+          <span class="sep">•</span>
+          <a href="tel:+919008433790">+91-9008433790</a>
+        </div>
+        <div class="footer-right">
+          <span>Abid Siddiqui • Cybersecurity & IAM Portfolio</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Profile Quick Modal -->
+  <div id="profile-modal" class="modal-backdrop">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>User Profile</h3>
+        <button class="modal-close" id="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-avatar">AS</div>
+        <h4>Abid Siddiqui</h4>
+        <p class="modal-email">abidsiddiqui2002@gmail.com</p>
+        <div class="modal-divider"></div>
+        <div class="modal-meta-list">
+          <div><strong>Role:</strong> Cybersecurity Analyst Level 2 (User Access Management)</div>
+          <div><strong>Company:</strong> Wipro Technologies</div>
+          <div><strong>Location:</strong> Bengaluru, Karnataka, India</div>
+          <div><strong>Phone:</strong> +91-9008433790</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-full" id="sign-out-btn">Sign Out to Portal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
