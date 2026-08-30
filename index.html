@@ -14,6 +14,47 @@
   <!-- Ambient Background Particles Canvas -->
   <canvas id="ambient-canvas"></canvas>
 
+  <!-- macOS Top Menu Bar -->
+  <div class="macos-menu-bar" id="macos-menu-bar">
+    <div class="macos-menu-left">
+      <span class="macos-apple-logo" title="Apple / macOS Interface">
+        <svg viewBox="0 0 170 170" width="14" height="14" fill="currentColor">
+          <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.74 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.59-7.71-11.66-14-5.33-8.26-9.63-17.65-12.9-28.18-3.27-10.53-4.9-20.87-4.9-31.02 0-14.28 3.58-26.04 10.74-35.28 7.16-9.24 16.08-13.97 26.76-14.2 4.9.11 10.22 1.34 15.97 3.69 5.75 2.34 9.69 3.61 11.82 3.81 1.74-.2 5.76-1.52 12.06-3.96 6.3-2.45 11.75-3.53 16.36-3.25 12.63.87 22.84 5.92 30.63 15.15-11.09 6.74-16.52 15.93-16.29 27.57.23 9.13 3.69 16.74 10.38 22.83 6.69 6.09 14.57 9.57 23.64 10.44-2.5 7.4-5.55 14.68-9.14 21.84zM119.22 33.64c0-7.29 2.5-14.03 7.5-20.22 5-6.19 11.2-10.66 18.6-13.42.33 1.31.5 2.62.5 3.93 0 7.39-2.73 14.47-8.19 21.23-5.46 6.76-11.96 10.87-19.5 12.33-.22-1.31-.33-2.58-.33-3.85z"/>
+        </svg>
+      </span>
+      <span class="macos-app-name">Abid Siddiqui</span>
+      <div class="macos-menu-items">
+        <span class="macos-menu-item active-app-menu" data-menu="profile">Profile</span>
+        <span class="macos-menu-item" data-menu="file">File</span>
+        <span class="macos-menu-item" data-menu="edit">Edit</span>
+        <span class="macos-menu-item" data-menu="view">View</span>
+        <span class="macos-menu-item" data-menu="window">Window</span>
+        <span class="macos-menu-item" data-menu="help">Help</span>
+      </div>
+    </div>
+    <div class="macos-menu-right">
+      <span class="macos-status-pill"><span class="badge-dot"></span> UAM Level 2</span>
+      <span class="macos-status-item" id="menu-wifi-btn" title="Wi-Fi: Connected">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98A17.91 17.91 0 0 0 12 4zm0 2.22c3.78 0 7.22 1.45 9.8 3.86L12 18.23 2.2 10.08A15.7 15.7 0 0 1 12 6.22z"/></svg>
+      </span>
+      <span class="macos-status-item" id="menu-battery-btn" title="Battery: 100% (Power Connected)">
+        <span class="battery-pct">100%</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4zM11 20v-5.5H9L13 7v5.5h2L11 20z"/></svg>
+      </span>
+      <span class="macos-status-item" id="spotlight-btn" title="Spotlight Search">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </span>
+      <span class="macos-status-item" id="control-center-btn" title="Control Center">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/></svg>
+      </span>
+      <span class="macos-clock" id="macos-live-clock">Sun Aug 30 11:38 PM</span>
+      <button class="macos-theme-pill" id="macos-theme-toggle" title="Switch Appearance (Dark / Light Glass)">
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
+  </div>
+
   <!-- ==================================================== -->
   <!-- 1. AUTHENTICATION & PROFILE ENTRY VIEW               -->
   <!-- ==================================================== -->
@@ -22,7 +63,7 @@
     <div class="auth-top-bar">
       <div class="brand-pill">
         <span class="badge-dot"></span>
-        <span>Secure Profile Portal</span>
+        <span>macOS Sonoma Glass Portal</span>
       </div>
       <div class="top-actions">
         <button id="theme-toggle-btn" class="icon-btn" title="Toggle Theme" aria-label="Toggle Theme">
@@ -35,6 +76,17 @@
     <!-- Main Sign-in Card -->
     <div class="auth-container">
       <div class="auth-card" id="auth-card">
+        <!-- macOS Window Traffic Light Chrome Header -->
+        <div class="window-chrome-header">
+          <div class="window-traffic-lights">
+            <span class="traffic-light close" title="Close"></span>
+            <span class="traffic-light minimize" title="Minimize"></span>
+            <span class="traffic-light zoom" title="Zoom"></span>
+          </div>
+          <span class="window-chrome-title">Identity & Access Management — Lock Screen</span>
+          <div class="window-chrome-dummy"></div>
+        </div>
+
         <!-- Badge Header -->
         <div class="auth-header">
           <div class="portal-logo-wrapper">
@@ -134,6 +186,22 @@
   <!-- 2. RESUME DASHBOARD VIEW                             -->
   <!-- ==================================================== -->
   <div id="app-view" class="view-screen">
+    <!-- macOS Window Chrome Title Bar -->
+    <div class="macos-window-bar">
+      <div class="window-traffic-lights">
+        <span class="traffic-light close" id="win-close-btn" title="Return to Portal"></span>
+        <span class="traffic-light minimize" id="win-min-btn" title="Minimize Window"></span>
+        <span class="traffic-light zoom" id="win-zoom-btn" title="Zoom / Expand Window"></span>
+      </div>
+      <div class="macos-window-title">
+        <span class="win-icon">🛡️</span>
+        <span class="win-text">Abid Siddiqui — Cybersecurity Analyst Level 2 — Portfolio (macOS Glass UI)</span>
+      </div>
+      <div class="macos-window-actions">
+        <span class="glass-tag">macOS Liquid Glass</span>
+      </div>
+    </div>
+
     <!-- Main Navigation Bar -->
     <header class="app-header">
       <div class="header-left">
@@ -144,10 +212,22 @@
       </div>
 
       <nav class="header-nav">
-        <button class="nav-tab active" data-target="section-overview">Overview</button>
-        <button class="nav-tab" data-target="section-experience">Experience</button>
-        <button class="nav-tab" data-target="section-skills">Skills & Arsenal</button>
-        <button class="nav-tab" data-target="section-education">Education & Certs</button>
+        <button class="nav-tab active" data-target="section-overview">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+          <span>Overview</span>
+        </button>
+        <button class="nav-tab" data-target="section-experience">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          <span>Experience</span>
+        </button>
+        <button class="nav-tab" data-target="section-skills">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>Skills & Arsenal</span>
+        </button>
+        <button class="nav-tab" data-target="section-education">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path></svg>
+          <span>Education & Certs</span>
+        </button>
       </nav>
 
       <div class="header-right">
@@ -159,7 +239,7 @@
           <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
           <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         </button>
-        <div class="user-profile-badge" id="profile-modal-btn">
+        <div class="user-profile-badge" id="profile-modal-btn" title="Profile Details">
           <div class="user-avatar-sm">AS</div>
         </div>
       </div>
@@ -713,11 +793,16 @@
     </footer>
   </div>
 
-  <!-- Profile Quick Modal -->
+  <!-- Profile Quick Modal (macOS Sheet / Window) -->
   <div id="profile-modal" class="modal-backdrop">
     <div class="modal-content">
-      <div class="modal-header">
-        <h3>User Profile</h3>
+      <div class="window-chrome-header">
+        <div class="window-traffic-lights">
+          <span class="traffic-light close" id="modal-traffic-close" title="Close"></span>
+          <span class="traffic-light minimize" title="Minimize"></span>
+          <span class="traffic-light zoom" title="Zoom"></span>
+        </div>
+        <span class="window-chrome-title">User Account Details</span>
         <button class="modal-close" id="modal-close-btn">&times;</button>
       </div>
       <div class="modal-body">
@@ -737,6 +822,57 @@
       </div>
     </div>
   </div>
+
+  <!-- macOS Floating Liquid Glass Dock -->
+  <nav class="macos-dock-container" id="macos-dock" aria-label="macOS Application Dock">
+    <div class="macos-dock">
+      <button class="dock-item active" data-target="section-overview" data-tooltip="Overview" aria-label="Overview">
+        <div class="dock-icon bg-gradient-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        </div>
+        <span class="dock-dot"></span>
+      </button>
+
+      <button class="dock-item" data-target="section-experience" data-tooltip="Experience" aria-label="Experience">
+        <div class="dock-icon bg-gradient-purple">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        </div>
+        <span class="dock-dot"></span>
+      </button>
+
+      <button class="dock-item" data-target="section-skills" data-tooltip="Skills" aria-label="Skills">
+        <div class="dock-icon bg-gradient-amber">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </div>
+        <span class="dock-dot"></span>
+      </button>
+
+      <button class="dock-item" data-target="section-education" data-tooltip="Education" aria-label="Education">
+        <div class="dock-icon bg-gradient-emerald">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+        </div>
+        <span class="dock-dot"></span>
+      </button>
+
+      <div class="dock-divider"></div>
+
+      <button class="dock-item" id="dock-pdf-btn" data-tooltip="Download PDF" aria-label="Download PDF">
+        <div class="dock-icon bg-gradient-red">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        </div>
+      </button>
+
+      <a href="mailto:abidsiddiqui2002@gmail.com" class="dock-item" data-tooltip="Email Me" aria-label="Email Me">
+        <div class="dock-icon bg-gradient-cyan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </div>
+      </a>
+
+      <button class="dock-item" id="dock-profile-btn" data-tooltip="Profile Sheet" aria-label="Profile Sheet">
+        <div class="dock-avatar">AS</div>
+      </button>
+    </div>
+  </nav>
 
   <!-- Toast Notification Container -->
   <div id="toast-container"></div>
