@@ -41,21 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
 
   // =========================================================================
-  // 3. ELASTIC INERTIAL SPRING & SOFT PADDING CONTROLLER
-  // Features:
-  // - Body content flexes softly with scroll velocity / wheel momentum
-  // - Expands soft padding dynamically and always glides back to original state
+  // 3. SMOOTH ACTIVE NAV TAB HIGHLIGHT ON SCROLL
   // =========================================================================
-  const dashboardBody = document.querySelector('.dashboard-body');
-  let lastScrollY = window.scrollY;
-  let targetSpringOffset = 0;
-  let springOffset = 0;
-
-  window.addEventListener('wheel', (e) => {
-    const impulse = Math.max(-22, Math.min(22, e.deltaY * 0.12));
-    targetSpringOffset -= impulse * 0.35;
-  }, { passive: true });
-
   function updateActiveNav() {
     const scrollPosition = window.scrollY + 160;
     
@@ -76,18 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  window.addEventListener('scroll', () => {
-    const currentY = window.scrollY;
-    const scrollVelocity = currentY - lastScrollY;
-    lastScrollY = currentY;
-
-    // Velocity impulse proportional to scroll speed
-    const velocityImpulse = -Math.max(-20, Math.min(20, scrollVelocity * 0.4));
-    targetSpringOffset += (velocityImpulse - targetSpringOffset) * 0.35;
-
-    updateActiveNav();
-  }, { passive: true });
-
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
   updateActiveNav();
 
   // Feature Card smooth jump clicks
@@ -289,21 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Smooth mouse interpolation
       mouse.x += (mouse.targetX - mouse.x) * 0.15;
       mouse.y += (mouse.targetY - mouse.y) * 0.15;
-
-      // =====================================================================
-      // 0. ELASTIC INERTIAL SPRING & SOFT BODY PADDING (ALWAYS RETURNS BACK)
-      // =====================================================================
-      if (dashboardBody) {
-        springOffset += (targetSpringOffset - springOffset) * 0.12;
-        targetSpringOffset *= 0.84; // Natural decay back to 0
-
-        const softPadTop = 96 + Math.max(0, -springOffset * 0.35);
-        const softPadBottom = 110 + Math.max(0, springOffset * 0.35);
-
-        dashboardBody.style.transform = `translate3d(0, ${springOffset.toFixed(2)}px, 0)`;
-        dashboardBody.style.paddingTop = `${softPadTop.toFixed(1)}px`;
-        dashboardBody.style.paddingBottom = `${softPadBottom.toFixed(1)}px`;
-      }
 
       // =====================================================================
       // 1. RENDER CHROMATIC AURORA LIGHT CAUSTICS (SCROLL-DRIVEN)
