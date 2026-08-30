@@ -109,17 +109,32 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // 4. AUTO-COPY CONTACT BUTTONS (EMAIL & PHONE) & RESUME DOWNLOADS
+  // 4. EMAIL & PHONE BUTTON HANDLERS
   // Features:
-  // - Clicking Email or Phone copies text directly to clipboard
-  // - Shows clean, compact "Done" feedback inside the button's own popup tooltip
-  // - No invasive screen notifications
+  // - Phone Button: In mobile / phone mode, auto-opens the native Phone app with number filled!
+  // - Email Button & Desktop Phone Button: Auto-copies text to clipboard with compact "Done" feedback popup.
   // =========================================================================
+  const isMobileDevice = () => {
+    return window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  };
+
   const autoCopyBtns = document.querySelectorAll('.auto-copy-btn');
   autoCopyBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const textToCopy = btn.getAttribute('data-copy');
+      const telTarget = btn.getAttribute('data-tel');
+
+      // Phone button on mobile / phone mode: directly open native phone dialer with number filled!
+      if (telTarget && isMobileDevice()) {
+        if (navigator.clipboard && textToCopy) {
+          navigator.clipboard.writeText(textToCopy).catch(() => {});
+        }
+        window.location.href = telTarget;
+        return;
+      }
+
+      // Auto-copy flow (Email button on all devices, and Phone button on desktop)
       if (!textToCopy) return;
 
       navigator.clipboard.writeText(textToCopy).then(() => {
@@ -135,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (popupIcon) popupIcon.textContent = '📋';
         }, 1600);
       }).catch(() => {
-        // Fallback silently
+        if (telTarget) window.location.href = telTarget;
       });
     });
   });
