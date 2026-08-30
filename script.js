@@ -1,33 +1,22 @@
 /**
  * ABID SIDDIQUI — RESUME & PORTFOLIO INTERACTIVE SCRIPT
  * Theme: macOS Light Frosted Glass (Default) & Dark Glass UI
- * Background: Interactive Doughnut (Torus from above) Particle Engine with
- * Small Dots, Fluid Mouse-Tracking, Circle-to-Pill Distance Morphing, and 2D Chromatic Color Shifts.
+ * Background: Scroll-Driven Liquid Aurora Mesh & Interactive Constellation Network
+ * Feature: Seamless background chromatic evolution as the page scrolls from top to bottom.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   // 1. STATE & DOM ELEMENTS
   // =========================================================================
-  const authView = document.getElementById('auth-view');
-  const appView = document.getElementById('app-view');
-  const authenticateBtn = document.getElementById('authenticate-btn');
   const directPdfBtn = document.getElementById('direct-pdf-btn');
-  const returnAuthBtn = document.getElementById('return-auth-btn');
   const headerPdfBtn = document.getElementById('header-pdf-btn');
-  const themeToggleBtn = document.getElementById('theme-toggle-btn');
   const appThemeBtn = document.getElementById('app-theme-btn');
-  const profileModalBtn = document.getElementById('profile-modal-btn');
-  const profileModal = document.getElementById('profile-modal');
-  const modalCloseBtn = document.getElementById('modal-close-btn');
-  const signOutBtn = document.getElementById('sign-out-btn');
   const copyDetailsBtn = document.getElementById('copy-details-btn');
   const toastContainer = document.getElementById('toast-container');
   const navTabs = document.querySelectorAll('.nav-tab');
-  const contentSections = document.querySelectorAll('.content-section');
+  const sections = document.querySelectorAll('.content-section');
   const featureCards = document.querySelectorAll('.feature-card');
-  const footerQuickView = document.getElementById('footer-quick-view');
-  const accountPill = document.getElementById('account-pill');
 
   // Resume PDF Path
   const PDF_PATH = "resume.pdf";
@@ -36,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. THEME MANAGER (DEFAULT: LIGHT FROSTED GLASS)
   // =========================================================================
   const initTheme = () => {
-    // Default theme is 'light'
     const savedTheme = localStorage.getItem('user_theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
   };
@@ -49,111 +37,49 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast(`Switched to ${newTheme === 'light' ? 'Light Frosted Glass' : 'Dark Glass'} Theme`);
   };
 
-  if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
   if (appThemeBtn) appThemeBtn.addEventListener('click', toggleTheme);
   initTheme();
 
   // =========================================================================
-  // 3. AUTHENTICATION & PORTAL ENTRY FLOW
+  // 3. SMOOTH ACTIVE NAV TAB HIGHLIGHT ON SCROLL
   // =========================================================================
-  const enterApp = (targetSection = 'section-overview') => {
-    if (authenticateBtn) {
-      authenticateBtn.disabled = true;
-      authenticateBtn.innerHTML = `
-        <svg class="btn-icon spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
-        <span>Loading Portfolio...</span>
-      `;
-    }
+  function updateActiveNav() {
+    const scrollPosition = window.scrollY + 160;
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
 
-    setTimeout(() => {
-      authView.classList.remove('active');
-      appView.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      showToast('Welcome • Portfolio Opened');
-      switchTab(targetSection);
-      if (authenticateBtn) {
-        authenticateBtn.disabled = false;
-        authenticateBtn.innerHTML = `
-          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
-          <span class="btn-text">Enter Profile & Resume</span>
-        `;
-      }
-    }, 350);
-  };
-
-  const exitToAuth = () => {
-    if (profileModal) profileModal.classList.remove('open');
-    appView.classList.remove('active');
-    authView.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    showToast('Returned to Portal');
-  };
-
-  if (authenticateBtn) authenticateBtn.addEventListener('click', () => enterApp('section-overview'));
-  if (accountPill) accountPill.addEventListener('click', () => enterApp('section-overview'));
-  if (returnAuthBtn) returnAuthBtn.addEventListener('click', exitToAuth);
-  if (signOutBtn) signOutBtn.addEventListener('click', exitToAuth);
-  if (footerQuickView) footerQuickView.addEventListener('click', (e) => { e.preventDefault(); enterApp('section-overview'); });
-
-  // =========================================================================
-  // 4. NAVIGATION & TAB SWITCHING
-  // =========================================================================
-  function switchTab(targetId) {
-    // Header Navigation Tabs
-    navTabs.forEach(tab => {
-      if (tab.getAttribute('data-target') === targetId) {
-        tab.classList.add('active');
-      } else {
-        tab.classList.remove('active');
-      }
-    });
-
-    // Content Sections
-    contentSections.forEach(section => {
-      if (section.id === targetId) {
-        section.classList.add('active');
-      } else {
-        section.classList.remove('active');
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        navTabs.forEach(tab => {
+          if (tab.getAttribute('href') === `#${sectionId}`) {
+            tab.classList.add('active');
+          } else {
+            tab.classList.remove('active');
+          }
+        });
       }
     });
   }
 
-  navTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.getAttribute('data-target');
-      switchTab(target);
-    });
-  });
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
 
+  // Feature Card smooth jump clicks
   featureCards.forEach(card => {
     card.addEventListener('click', () => {
-      const target = card.getAttribute('data-jump');
-      if (target) switchTab(target);
+      const targetId = card.getAttribute('data-jump');
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+      }
     });
   });
 
   // =========================================================================
-  // 5. PROFILE MODAL & UTILITIES
+  // 4. COPY CONTACT & RESUME DOWNLOADS
   // =========================================================================
-  if (profileModalBtn) {
-    profileModalBtn.addEventListener('click', () => {
-      profileModal.classList.add('open');
-    });
-  }
-
-  if (modalCloseBtn) {
-    modalCloseBtn.addEventListener('click', () => {
-      profileModal.classList.remove('open');
-    });
-  }
-
-  if (profileModal) {
-    profileModal.addEventListener('click', (e) => {
-      if (e.target === profileModal) profileModal.classList.remove('open');
-    });
-  }
-
-  // Copy Contact Info
   if (copyDetailsBtn) {
     copyDetailsBtn.addEventListener('click', () => {
       const contactText = `Abid Siddiqui | Cybersecurity Analyst Level 2 (User Access Management)\nEmail: abidsiddiqui2002@gmail.com\nPhone: +91-9008433790\nLocation: Bengaluru, Karnataka, India\nDegree: Bachelor in Computer Science (Reva University)`;
@@ -171,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // PDF Downloads
   const triggerPdfDownload = () => {
     showToast("Opening Resume PDF...");
     const link = document.createElement('a');
@@ -205,12 +130,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 6. LIQUID AURORA MESH & INTERACTIVE CYBER-CONSTELLATION NETWORK
+  // 5. SCROLL-DRIVEN LIQUID AURORA MESH & INTERACTIVE CONSTELLATION NETWORK
   // Features:
-  // - Atmospheric glowing chromatic light caustics (Sonoma / Apple Intelligence aesthetic)
-  // - Floating identity topology nodes with delicate synaptic connection threads
-  // - Subtle interactive cursor magnetic field & light refraction
-  // - Adapts dynamically between Light Frosted Glass & Dark Glass modes
+  // - Background color evolves seamlessly based on scroll position:
+  //   * 0% (Hero / Overview): Vibrant Azure Sapphire & Sky Cyan
+  //   * 33% (Experience): Electric Orchid & Imperial Purple
+  //   * 66% (Skills): Sunset Amber, Gold & Coral Glow
+  //   * 100% (Education): Apple Emerald Mint & Spring Green
+  // - Atmospheric glowing chromatic light caustics refracting behind frosted glass
+  // - Floating identity topology nodes with dynamic synaptic connection threads
+  // - Interactive cursor repulsion and subtle laser links
   // =========================================================================
   const ambientCanvas = document.getElementById('ambient-canvas');
   if (ambientCanvas) {
@@ -254,39 +183,36 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: true });
 
-    // Chromatic Aurora Orbs (Glow behind frosted glass)
+    // Chromatic Aurora Orbs
     const auroraOrbs = [
       {
-        baseX: 0.2, baseY: 0.25,
-        radius: 380,
-        speedX: 0.35, speedY: 0.28,
-        colorDark: 'rgba(10, 132, 255, 0.22)',   // Sapphire Blue
-        colorLight: 'rgba(0, 113, 227, 0.14)'
-      },
-      {
-        baseX: 0.8, baseY: 0.2,
+        baseX: 0.18, baseY: 0.22,
         radius: 420,
-        speedX: -0.28, speedY: 0.32,
-        colorDark: 'rgba(191, 90, 242, 0.18)',  // Purple / Orchid
-        colorLight: 'rgba(175, 82, 222, 0.12)'
+        speedX: 0.32, speedY: 0.26,
+        // Hues for [Overview, Experience, Skills, Education]
+        hues: [210, 275, 38, 142]
       },
       {
-        baseX: 0.3, baseY: 0.8,
-        radius: 400,
-        speedX: 0.30, speedY: -0.25,
-        colorDark: 'rgba(48, 209, 88, 0.16)',   // Emerald Mint
-        colorLight: 'rgba(40, 205, 65, 0.11)'
+        baseX: 0.82, baseY: 0.20,
+        radius: 450,
+        speedX: -0.26, speedY: 0.30,
+        hues: [195, 310, 18, 168]
       },
       {
-        baseX: 0.85, baseY: 0.75,
-        radius: 440,
-        speedX: -0.22, speedY: -0.30,
-        colorDark: 'rgba(255, 159, 10, 0.16)',  // Sunset Coral / Amber
-        colorLight: 'rgba(255, 149, 0, 0.10)'
+        baseX: 0.25, baseY: 0.78,
+        radius: 410,
+        speedX: 0.28, speedY: -0.24,
+        hues: [230, 255, 300, 195]
+      },
+      {
+        baseX: 0.82, baseY: 0.78,
+        radius: 460,
+        speedX: -0.20, speedY: -0.28,
+        hues: [275, 215, 50, 122]
       }
     ];
 
-    // Constellation / Identity Topology Nodes
+    // Constellation Nodes
     const nodeCount = Math.min(75, Math.max(40, Math.floor((width * height) / 22000)));
     const nodes = [];
 
@@ -298,8 +224,27 @@ document.addEventListener('DOMContentLoaded', () => {
         vy: (Math.random() - 0.5) * 0.45,
         radius: Math.random() * 1.5 + 1.2,
         baseAlpha: Math.random() * 0.4 + 0.3,
-        hue: [205, 270, 150, 35, 330][Math.floor(Math.random() * 5)]
+        hueOffset: (Math.random() - 0.5) * 40
       });
+    }
+
+    // Smooth Scroll Progress Interpolation
+    let targetScrollProgress = 0;
+    let currentScrollProgress = 0;
+
+    function getInterpolatedHue(hues, progress) {
+      // 4 key stops at progress = 0.0, 0.33, 0.66, 1.0
+      const segment = progress * (hues.length - 1);
+      const index = Math.floor(segment);
+      const nextIndex = Math.min(hues.length - 1, index + 1);
+      const frac = segment - index;
+
+      let h1 = hues[index];
+      let h2 = hues[nextIndex];
+
+      // Shortest angle interpolation
+      let diff = (h2 - h1 + 540) % 360 - 180;
+      return (h1 + diff * frac + 360) % 360;
     }
 
     const startTime = performance.now();
@@ -310,6 +255,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
       const isDarkMode = currentTheme === 'dark';
 
+      // Compute & interpolate smooth scroll progress
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      targetScrollProgress = maxScroll > 0 ? Math.max(0, Math.min(1, window.scrollY / maxScroll)) : 0;
+      currentScrollProgress += (targetScrollProgress - currentScrollProgress) * 0.08;
+
       ctx.clearRect(0, 0, width, height);
 
       // Smooth mouse interpolation
@@ -317,16 +267,21 @@ document.addEventListener('DOMContentLoaded', () => {
       mouse.y += (mouse.targetY - mouse.y) * 0.15;
 
       // =====================================================================
-      // 1. RENDER CHROMATIC AURORA LIGHT CAUSTICS
+      // 1. RENDER CHROMATIC AURORA LIGHT CAUSTICS (SCROLL-DRIVEN)
       // =====================================================================
       auroraOrbs.forEach(orb => {
         const ox = (orb.baseX * width) + Math.cos(elapsed * orb.speedX) * (width * 0.12);
         const oy = (orb.baseY * height) + Math.sin(elapsed * orb.speedY) * (height * 0.10);
         
+        // Dynamically compute hue based on current scroll progress
+        const orbHue = getInterpolatedHue(orb.hues, currentScrollProgress);
+        const sat = isDarkMode ? 90 : 85;
+        const lit = isDarkMode ? 56 : 48;
+        const alpha = isDarkMode ? 0.20 : 0.13;
+
         const grad = ctx.createRadialGradient(ox, oy, 0, ox, oy, orb.radius);
-        const color = isDarkMode ? orb.colorDark : orb.colorLight;
-        grad.addColorStop(0, color);
-        grad.addColorStop(0.65, color.replace(/[\d\.]+\)$/, isDarkMode ? '0.06)' : '0.03)'));
+        grad.addColorStop(0, `hsla(${orbHue}, ${sat}%, ${lit}%, ${alpha})`);
+        grad.addColorStop(0.65, `hsla(${orbHue}, ${sat}%, ${lit}%, ${alpha * 0.28})`);
         grad.addColorStop(1, 'transparent');
 
         ctx.fillStyle = grad;
@@ -337,9 +292,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Cursor Atmospheric Refraction Glow
       if (mouse.active && mouse.x > 0 && mouse.y > 0) {
+        const cursorHue = getInterpolatedHue([205, 275, 40, 150], currentScrollProgress);
         const cursorGlow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 220);
-        cursorGlow.addColorStop(0, isDarkMode ? 'rgba(10, 132, 255, 0.14)' : 'rgba(0, 113, 227, 0.09)');
-        cursorGlow.addColorStop(0.6, isDarkMode ? 'rgba(191, 90, 242, 0.05)' : 'rgba(175, 82, 222, 0.03)');
+        cursorGlow.addColorStop(0, `hsla(${cursorHue}, 85%, 55%, ${isDarkMode ? 0.15 : 0.09})`);
+        cursorGlow.addColorStop(0.6, `hsla(${(cursorHue + 40) % 360}, 80%, 55%, ${isDarkMode ? 0.05 : 0.03})`);
         cursorGlow.addColorStop(1, 'transparent');
         ctx.fillStyle = cursorGlow;
         ctx.beginPath();
@@ -351,6 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 2. UPDATE & RENDER CONSTELLATION NODES & LASER LINKS
       // =====================================================================
       const maxDist = 125;
+      const baseThemeHue = getInterpolatedHue([210, 280, 36, 145], currentScrollProgress);
 
       nodes.forEach(node => {
         // Organic floating motion
@@ -378,12 +335,13 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
 
-        // Draw Node Dot
+        // Draw Node Dot with dynamic scroll-driven hue
+        const nodeHue = (baseThemeHue + node.hueOffset + 360) % 360;
         const sat = isDarkMode ? 85 : 80;
         const lit = isDarkMode ? (55 + proximityBoost * 30) : (42 + proximityBoost * 20);
         const alpha = Math.min(1, node.baseAlpha + proximityBoost * 0.5);
 
-        ctx.fillStyle = `hsla(${node.hue}, ${sat}%, ${lit}%, ${alpha})`;
+        ctx.fillStyle = `hsla(${nodeHue}, ${sat}%, ${lit}%, ${alpha})`;
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius + proximityBoost * 1.2, 0, Math.PI * 2);
         ctx.fill();
@@ -407,8 +365,8 @@ document.addEventListener('DOMContentLoaded', () => {
           if (dist < maxDist) {
             const linkAlpha = (1 - dist / maxDist) * (isDarkMode ? 0.22 : 0.16);
             ctx.strokeStyle = isDarkMode 
-              ? `rgba(148, 163, 184, ${linkAlpha})` 
-              : `rgba(0, 113, 227, ${linkAlpha})`;
+              ? `hsla(${baseThemeHue}, 60%, 70%, ${linkAlpha})` 
+              : `hsla(${baseThemeHue}, 75%, 45%, ${linkAlpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -425,9 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (dist < mouse.radius) {
             const cursorLinkAlpha = (1 - dist / mouse.radius) * (isDarkMode ? 0.45 : 0.35);
-            ctx.strokeStyle = isDarkMode 
-              ? `rgba(10, 132, 255, ${cursorLinkAlpha})` 
-              : `rgba(0, 113, 227, ${cursorLinkAlpha})`;
+            ctx.strokeStyle = `hsla(${baseThemeHue}, 85%, 55%, ${cursorLinkAlpha})`;
             ctx.lineWidth = 1.2;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);

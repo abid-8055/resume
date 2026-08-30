@@ -7,159 +7,43 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=5.0" />
+  <link rel="stylesheet" href="styles.css?v=6.0" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='22' fill='%234285F4'/%3E%3Ctext x='50%25' y='55%25' font-size='20' font-family='sans-serif' font-weight='bold' fill='%23ffffff' text-anchor='middle' dominant-baseline='middle'%3EAS%3C/text%3E%3C/svg%3E" />
 </head>
 <body>
-  <!-- Ambient Liquid Aurora Mesh & Cyber Constellation Canvas -->
+  <!-- Ambient Liquid Aurora Mesh & Cyber Constellation Canvas (Seamlessly shifts with scroll) -->
   <canvas id="ambient-canvas"></canvas>
 
   <!-- ==================================================== -->
-  <!-- 1. AUTHENTICATION & PROFILE ENTRY VIEW               -->
+  <!-- MAIN SCROLLABLE PORTFOLIO                            -->
   <!-- ==================================================== -->
-  <main id="auth-view" class="view-screen active">
-    <!-- Top Theme Switcher / Status -->
-    <div class="auth-top-bar">
-      <div class="brand-pill">
-        <span class="badge-dot"></span>
-        <span>Secure Profile Portal</span>
-      </div>
-      <div class="top-actions">
-        <button id="theme-toggle-btn" class="icon-btn" title="Toggle Theme" aria-label="Toggle Theme">
-          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Main Sign-in Card -->
-    <div class="auth-container">
-      <div class="auth-card" id="auth-card">
-        <!-- Badge Header -->
-        <div class="auth-header">
-          <div class="portal-logo-wrapper">
-            <div class="portal-logo-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <span class="portal-tag">PORTFOLIO ACCESS</span>
-          </div>
-          <h1 class="auth-title">Sign in</h1>
-          <p class="auth-subtitle">to continue to <strong>Abid Siddiqui's Cybersecurity & IAM Profile</strong></p>
-        </div>
-
-        <!-- Verified Account Card -->
-        <div class="account-selector" id="account-pill">
-          <div class="account-avatar-wrapper">
-            <div class="account-avatar">
-              <span>AS</span>
-            </div>
-            <div class="online-indicator"></div>
-          </div>
-          <div class="account-info">
-            <div class="account-name-row">
-              <span class="account-name">Abid Siddiqui</span>
-              <span class="verified-badge" title="Verified Profile">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-              </span>
-            </div>
-            <span class="account-email">abidsiddiqui2002@gmail.com</span>
-            <span class="account-role">Cybersecurity Analyst Level 2 • Wipro</span>
-          </div>
-        </div>
-
-        <!-- Quick Credentials / Summary Box -->
-        <div class="auth-status-box">
-          <div class="status-row">
-            <span class="status-label">Current Role:</span>
-            <span class="status-val highlight">Cybersecurity Analyst Level 2</span>
-          </div>
-          <div class="status-row">
-            <span class="status-label">Focus Area:</span>
-            <span class="status-val">User Access Management (UAM / IAM)</span>
-          </div>
-          <div class="status-row">
-            <span class="status-label">Location:</span>
-            <span class="status-val">Bengaluru, Karnataka, India</span>
-          </div>
-          <div class="status-row">
-            <span class="status-label">Education:</span>
-            <span class="status-val">B.CS • Reva University (2023)</span>
-          </div>
-          <div class="status-row">
-            <span class="status-label">Certifications:</span>
-            <span class="status-val badge-green">Microsoft MAT Certified</span>
-          </div>
-        </div>
-
-        <!-- Auth Actions -->
-        <div class="auth-actions">
-          <button id="authenticate-btn" class="btn btn-primary btn-portal">
-            <span class="btn-ripple"></span>
-            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>
-            <span class="btn-text">Enter Profile & Resume</span>
-          </button>
-          
-          <div class="pdf-sub-action">
-            <button id="direct-pdf-btn" class="btn btn-sm btn-subtle">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-              <span>Download PDF Resume</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Auth Card Footer -->
-        <div class="auth-card-footer">
-          <span>Verified Professional Portfolio • Bengaluru, Karnataka</span>
-        </div>
-      </div>
-
-      <!-- Auth Page Bottom Footer -->
-      <div class="auth-global-footer">
-        <div class="footer-lang">
-          <select aria-label="Language Selector">
-            <option>English (United States)</option>
-            <option>English (India)</option>
-          </select>
-        </div>
-        <div class="footer-links">
-          <a href="#about" id="footer-quick-view">Quick View</a>
-          <a href="mailto:abidsiddiqui2002@gmail.com">Contact Email</a>
-          <a href="tel:+919008433790">+91-9008433790</a>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- ==================================================== -->
-  <!-- 2. RESUME DASHBOARD VIEW                             -->
-  <!-- ==================================================== -->
-  <div id="app-view" class="view-screen">
-    <!-- Main Navigation Bar -->
+  <div id="app-view" class="main-scroll-layout">
+    <!-- Sticky Glass Navigation Bar -->
     <header class="app-header">
       <div class="header-left">
-        <div class="logo-group" id="return-auth-btn" title="Back to Portal">
+        <a href="#section-overview" class="logo-group" title="Back to Top">
           <div class="brand-monogram">AS</div>
           <span class="app-brand-name">Abid Siddiqui <span class="brand-sub">Cybersecurity & IAM Portfolio</span></span>
-        </div>
+        </a>
       </div>
 
       <nav class="header-nav">
-        <button class="nav-tab active" data-target="section-overview">
+        <a href="#section-overview" class="nav-tab active">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
           <span>Overview</span>
-        </button>
-        <button class="nav-tab" data-target="section-experience">
+        </a>
+        <a href="#section-experience" class="nav-tab">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
           <span>Experience</span>
-        </button>
-        <button class="nav-tab" data-target="section-skills">
+        </a>
+        <a href="#section-skills" class="nav-tab">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
           <span>Skills & Arsenal</span>
-        </button>
-        <button class="nav-tab" data-target="section-education">
+        </a>
+        <a href="#section-education" class="nav-tab">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path></svg>
           <span>Education & Certs</span>
-        </button>
+        </a>
       </nav>
 
       <div class="header-right">
@@ -167,20 +51,17 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           <span>PDF Resume</span>
         </button>
-        <button id="app-theme-btn" class="icon-btn" title="Toggle Dark/Light">
+        <button id="app-theme-btn" class="icon-btn" title="Toggle Dark/Light" aria-label="Toggle Theme">
           <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
           <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         </button>
-        <div class="user-profile-badge" id="profile-modal-btn" title="Profile Details">
-          <div class="user-avatar-sm">AS</div>
-        </div>
       </div>
     </header>
 
-    <!-- Main Scrollable Dashboard Content -->
-    <div class="dashboard-body">
+    <!-- Main Scrollable Dashboard Content (All Sections Rendered Sequentially) -->
+    <main class="dashboard-body">
       <!-- SECTION 1: OVERVIEW -->
-      <section id="section-overview" class="content-section active">
+      <section id="section-overview" class="content-section">
         <!-- Hero Banner -->
         <div class="hero-grid">
           <div class="hero-card main-profile-card">
@@ -706,12 +587,13 @@
           </div>
         </div>
       </section>
-    </div>
+    </main>
 
-    <!-- Quick Footer Bar -->
+    <!-- Fixed Bottom Frosted Glass Bar -->
     <footer class="app-footer">
       <div class="footer-content">
         <div class="footer-left">
+          <span class="footer-badge">● Active</span>
           <span>Abid Siddiqui • Cybersecurity Analyst Level 2</span>
           <span class="sep">•</span>
           <a href="mailto:abidsiddiqui2002@gmail.com">abidsiddiqui2002@gmail.com</a>
@@ -719,40 +601,15 @@
           <a href="tel:+919008433790">+91-9008433790</a>
         </div>
         <div class="footer-right">
-          <span>Abid Siddiqui • Cybersecurity & IAM Portfolio</span>
+          <span>Bengaluru, India • Wipro Technologies</span>
         </div>
       </div>
     </footer>
   </div>
 
-  <!-- Profile Quick Modal (Glass Sheet) -->
-  <div id="profile-modal" class="modal-backdrop">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">User Account Details</h3>
-        <button class="modal-close" id="modal-close-btn" aria-label="Close modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="modal-avatar">AS</div>
-        <h4>Abid Siddiqui</h4>
-        <p class="modal-email">abidsiddiqui2002@gmail.com</p>
-        <div class="modal-divider"></div>
-        <div class="modal-meta-list">
-          <div><strong>Role:</strong> Cybersecurity Analyst Level 2 (User Access Management)</div>
-          <div><strong>Company:</strong> Wipro Technologies</div>
-          <div><strong>Location:</strong> Bengaluru, Karnataka, India</div>
-          <div><strong>Phone:</strong> +91-9008433790</div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary btn-full" id="sign-out-btn">Sign Out to Portal</button>
-      </div>
-    </div>
-  </div>
-
   <!-- Toast Notification Container -->
   <div id="toast-container"></div>
 
-  <script src="script.js?v=4.0"></script>
+  <script src="script.js?v=6.0"></script>
 </body>
 </html>
