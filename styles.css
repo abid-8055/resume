@@ -470,8 +470,9 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 56px 24px 32px 24px;
+  padding: 48px 24px 36px 24px;
   min-height: 100vh;
+  gap: 32px;
 }
 
 .auth-top-bar {
@@ -480,7 +481,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
+  padding: 10px 0;
 }
 
 .brand-pill {
@@ -490,9 +491,9 @@ body {
   background: var(--glass-surface);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-inner-sheen), var(--shadow-sm);
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: var(--radius-pill);
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   font-weight: 500;
   color: var(--text-secondary);
   backdrop-filter: var(--blur-glass);
@@ -501,11 +502,12 @@ body {
 
 .auth-container {
   width: 100%;
-  max-width: 490px;
+  max-width: 510px;
   margin: auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
 }
 
 /* Sign-in Glass Card */
@@ -513,7 +515,7 @@ body {
   width: 100%;
   background: var(--glass-card);
   border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   box-shadow: var(--shadow-window), var(--glass-inner-sheen);
   backdrop-filter: var(--blur-glass);
   -webkit-backdrop-filter: var(--blur-glass);
@@ -521,25 +523,17 @@ body {
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  padding: 38px 36px 0 36px;
   transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
 }
 
 .auth-card:hover {
   border-color: var(--glass-border-hover);
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.6), var(--glass-inner-sheen);
-}
-
-.auth-card .auth-header,
-.auth-card .account-selector,
-.auth-card .auth-status-box,
-.auth-card .auth-actions,
-.auth-card .auth-card-footer {
-  margin: 0 32px;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.2), var(--glass-inner-sheen);
 }
 
 .auth-card .auth-header {
-  margin-top: 28px;
-  margin-bottom: 20px;
+  margin-bottom: 26px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -549,15 +543,15 @@ body {
 .portal-logo-wrapper {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .portal-logo-icon {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #0a84ff, #bf5af2);
+  background: linear-gradient(135deg, #0071e3, #af52de);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -575,25 +569,26 @@ body {
   font-weight: 700;
   letter-spacing: 1.5px;
   color: var(--accent-blue);
-  padding: 3px 10px;
-  border: 1px solid rgba(10, 132, 255, 0.35);
+  padding: 4px 12px;
+  border: 1px solid rgba(0, 113, 227, 0.3);
   border-radius: 8px;
-  background: rgba(10, 132, 255, 0.1);
+  background: rgba(0, 113, 227, 0.08);
   box-shadow: var(--glass-inner-sheen);
 }
 
 .auth-title {
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   letter-spacing: -0.4px;
 }
 
 .auth-subtitle {
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   color: var(--text-secondary);
-  line-height: 1.4;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .auth-subtitle strong {
@@ -606,14 +601,14 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 14px 18px;
+  padding: 16px 20px;
   background: var(--glass-surface);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-inner-sheen);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-fast);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 .account-selector:hover {
@@ -625,20 +620,21 @@ body {
 
 .account-avatar-wrapper {
   position: relative;
+  flex-shrink: 0;
 }
 
 .account-avatar {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #0a84ff, #5e5ce6);
+  background: linear-gradient(135deg, #0071e3, #af52de);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   font-weight: 700;
-  box-shadow: 0 4px 14px rgba(10, 132, 255, 0.4);
+  box-shadow: 0 4px 14px var(--accent-blue-glow);
 }
 
 .online-indicator {
@@ -648,7 +644,7 @@ body {
   width: 14px;
   height: 14px;
   background-color: var(--accent-green);
-  border: 2px solid var(--bg-canvas);
+  border: 2.5px solid var(--bg-canvas);
   border-radius: 50%;
   box-shadow: 0 0 6px var(--accent-green-glow);
 }
@@ -656,6 +652,7 @@ body {
 .account-info {
   display: flex;
   flex-direction: column;
+  gap: 2px;
   overflow: hidden;
 }
 
@@ -666,7 +663,7 @@ body {
 }
 
 .account-name {
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--text-primary);
 }
@@ -683,14 +680,15 @@ body {
 }
 
 .account-email {
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   color: var(--text-secondary);
 }
 
 .account-role {
-  font-size: 0.78rem;
+  font-size: 0.80rem;
   color: var(--accent-blue);
   font-weight: 500;
+  margin-top: 2px;
 }
 
 /* Status summary mini box */
@@ -698,19 +696,20 @@ body {
   background: var(--glass-surface);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-inner-sheen);
-  border-radius: var(--radius-sm);
-  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  font-size: 0.84rem;
-  margin-bottom: 24px;
+  gap: 11px;
+  font-size: 0.86rem;
+  margin-bottom: 26px;
 }
 
 .status-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 22px;
 }
 
 .status-label {
@@ -728,47 +727,62 @@ body {
 }
 
 .status-val.badge-green {
-  background: rgba(48, 209, 88, 0.15);
-  color: var(--accent-green);
-  border: 1px solid rgba(48, 209, 88, 0.35);
-  padding: 2px 8px;
+  background: rgba(40, 205, 65, 0.14);
+  color: #1b8a30;
+  border: 1px solid rgba(40, 205, 65, 0.35);
+  padding: 3px 9px;
   border-radius: 6px;
   font-size: 0.76rem;
   font-weight: 600;
+}
+
+[data-theme="dark"] .status-val.badge-green {
+  background: rgba(48, 209, 88, 0.15);
+  color: var(--accent-green);
 }
 
 /* Action Buttons */
 .auth-actions {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.btn-portal {
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  min-height: 48px;
 }
 
 .pdf-sub-action {
   display: flex;
   justify-content: center;
+  margin-top: 2px;
 }
 
 .auth-card-footer {
   text-align: center;
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   border-top: 1px solid var(--glass-border);
-  padding: 16px 0;
-  margin-bottom: 0 !important;
+  padding: 16px 20px;
+  margin: 0 -36px !important;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 /* Global Footer on Auth Page */
 .auth-global-footer {
   width: 100%;
-  max-width: 490px;
+  max-width: 510px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
-  padding: 16px 8px;
+  padding: 12px 8px 16px 8px;
 }
 
 .footer-lang select {
