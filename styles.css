@@ -711,8 +711,9 @@ body {
   max-width: 1240px;
   width: 100%;
   margin: 0 auto;
-  padding: 96px 24px 110px 24px;
+  padding: calc(96px + var(--edge-top-pad, 24px)) 24px calc(110px + var(--edge-bottom-pad, 0px)) 24px;
   box-sizing: border-box;
+  transition: padding-top 0.2s ease-out, padding-bottom 0.2s ease-out;
 }
 
 .content-section {

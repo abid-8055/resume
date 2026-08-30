@@ -41,8 +41,36 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
 
   // =========================================================================
-  // 3. SMOOTH ACTIVE NAV TAB HIGHLIGHT ON SCROLL
+  // 3. SMOOTH ACTIVE NAV & TOP/BOTTOM EDGE PADDING CONTROLLER
+  // Rules:
+  // - Top and Bottom edges have generous soft breathing padding.
+  // - Anywhere in the middle (and when stopped in the middle), extra padding is 0.
+  // - Zero horizontal transform to guarantee rock-solid layout alignment.
   // =========================================================================
+  const dashboardBody = document.querySelector('.dashboard-body');
+
+  function updateEdgePadding() {
+    if (!dashboardBody) return;
+    const currentY = window.scrollY;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const distFromBottom = Math.max(0, maxScroll - currentY);
+
+    // Top edge proximity (active only within top 120px)
+    let topPad = 0;
+    if (currentY < 120) {
+      topPad = Math.round((1 - currentY / 120) * 24);
+    }
+
+    // Bottom edge proximity (active only within bottom 120px)
+    let bottomPad = 0;
+    if (maxScroll > 100 && distFromBottom < 120) {
+      bottomPad = Math.round((1 - distFromBottom / 120) * 28);
+    }
+
+    dashboardBody.style.setProperty('--edge-top-pad', `${topPad}px`);
+    dashboardBody.style.setProperty('--edge-bottom-pad', `${bottomPad}px`);
+  }
+
   function updateActiveNav() {
     const scrollPosition = window.scrollY + 160;
     
@@ -63,8 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  window.addEventListener('scroll', updateActiveNav, { passive: true });
-  updateActiveNav();
+  function onScroll() {
+    updateActiveNav();
+    updateEdgePadding();
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', updateEdgePadding, { passive: true });
+  onScroll();
 
   // Feature Card smooth jump clicks
   featureCards.forEach(card => {
