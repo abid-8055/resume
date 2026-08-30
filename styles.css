@@ -2113,6 +2113,9 @@ body {
 /* ==========================================================================
    RESPONSIVE BREAKPOINTS
    ========================================================================== */
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS (MOBILE & TABLET OPTIMIZATION)
+   ========================================================================== */
 @media (max-width: 900px) {
   .hero-grid,
   .skills-layout-grid,
@@ -2125,65 +2128,119 @@ body {
     grid-column: auto;
   }
   
-  .header-nav {
+  .brand-sub {
     display: none;
   }
 
-  .macos-menu-items {
-    display: none;
+  .app-header {
+    padding: 10px 20px;
+  }
+
+  .header-nav {
+    gap: 4px;
+    padding: 3px 5px;
+  }
+
+  .nav-tab {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 680px) {
+  .header-nav {
+    display: none; /* Hide header tabs on narrow phones to keep top bar ultra clean */
   }
 }
 
 @media (max-width: 600px) {
-  .auth-card {
-    padding: 0 0 20px 0;
+  .app-header {
+    padding: 10px 14px;
   }
 
-  .auth-card .auth-header,
-  .auth-card .account-selector,
-  .auth-card .auth-status-box,
-  .auth-card .auth-actions {
-    margin: 0 18px;
-  }
-  
   .dashboard-body {
-    padding: 20px 14px 80px 14px;
+    padding: calc(76px + var(--edge-top-pad, 16px)) 14px calc(115px + var(--edge-bottom-pad, 0px)) 14px;
   }
   
+  .hero-card, 
+  .timeline-content, 
+  .skill-category-card, 
+  .cert-glass-card {
+    padding: 22px 18px;
+    border-radius: var(--radius-lg);
+  }
+
   .profile-header-strip {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 16px;
+  }
+
+  .profile-avatar-large {
+    width: 80px;
+    height: 80px;
   }
   
   .name-badge-row, .meta-tags-row {
     justify-content: center;
   }
   
+  .user-display-name {
+    font-size: 1.6rem;
+  }
+
+  .user-tagline {
+    font-size: 0.85rem;
+  }
+
   .profile-cta-row {
     flex-direction: column;
     width: 100%;
+    gap: 10px;
   }
 
-  .profile-cta-row a, .profile-cta-row button {
+  .profile-cta-row a, 
+  .profile-cta-row button {
     width: 100%;
     justify-content: center;
   }
 
-  .macos-dock {
-    padding: 6px 10px;
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .metric-box {
+    padding: 12px;
+  }
+
+  .metric-number {
+    font-size: 1.4rem;
+  }
+
+  .timeline-card {
+    gap: 12px;
+  }
+
+  .role-title {
+    font-size: 1.15rem;
+  }
+
+  .app-footer {
+    padding: 10px 16px;
+    font-size: 0.76rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
     gap: 6px;
   }
 
-  .dock-icon, .dock-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-  }
-
-  .dock-icon svg {
-    width: 18px;
-    height: 18px;
+  .footer-left,
+  .footer-right {
+    justify-content: center;
   }
 }
 
