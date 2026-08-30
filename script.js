@@ -205,14 +205,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =========================================================================
-  // 6. DOUGHNUT (TORUS VIEWED FROM ABOVE) PARTICLE ENGINE
+  // 6. LIQUID AURORA MESH & INTERACTIVE CYBER-CONSTELLATION NETWORK
   // Features:
-  // - Doughnut / Annulus geometry: Inner clear hole + Outer boundary band
-  // - Small dots evenly distributed throughout the doughnut ring
-  // - Formation smoothly follows mouse cursor across the screen
-  // - Near mouse = pure circular small dots
-  // - Further away = gradually elongated into sleek micro-capsules / pills
-  // - Screen-space dynamic chromatic color shifts
+  // - Atmospheric glowing chromatic light caustics (Sonoma / Apple Intelligence aesthetic)
+  // - Floating identity topology nodes with delicate synaptic connection threads
+  // - Subtle interactive cursor magnetic field & light refraction
+  // - Adapts dynamically between Light Frosted Glass & Dark Glass modes
   // =========================================================================
   const ambientCanvas = document.getElementById('ambient-canvas');
   if (ambientCanvas) {
@@ -228,88 +226,85 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mouse Tracking State
     const mouse = {
-      x: width / 2,
-      y: height / 2,
-      targetX: width / 2,
-      targetY: height / 2,
-      active: false,
-      lastMoveTime: performance.now()
+      x: -1000,
+      y: -1000,
+      targetX: -1000,
+      targetY: -1000,
+      radius: 170,
+      active: false
     };
-
-    // Center of the doughnut formation (follows mouse with spring inertia)
-    const formationCenter = {
-      x: width / 2,
-      y: height / 2,
-      vx: 0,
-      vy: 0
-    };
-
-    function updatePointer(clientX, clientY) {
-      mouse.targetX = clientX;
-      mouse.targetY = clientY;
-      mouse.active = true;
-      mouse.lastMoveTime = performance.now();
-    }
 
     window.addEventListener('pointermove', (e) => {
-      updatePointer(e.clientX, e.clientY);
+      mouse.targetX = e.clientX;
+      mouse.targetY = e.clientY;
+      mouse.active = true;
+    });
+
+    window.addEventListener('pointerleave', () => {
+      mouse.active = false;
+      mouse.targetX = -1000;
+      mouse.targetY = -1000;
     });
 
     window.addEventListener('touchmove', (e) => {
       if (e.touches && e.touches.length > 0) {
-        updatePointer(e.touches[0].clientX, e.touches[0].clientY);
+        mouse.targetX = e.touches[0].clientX;
+        mouse.targetY = e.touches[0].clientY;
+        mouse.active = true;
       }
     }, { passive: true });
 
-    // =========================================================================
-    // Generate Doughnut (Annulus) Ring Formation with Small Dots
-    // Doughnut parameters:
-    // Inner hole radius: 105px (clear opening in center)
-    // Outer radius: 310px (ring thickness = 205px)
-    // =========================================================================
-    const innerRadius = 105;
-    const outerRadius = 310;
-    const ringTracks = 11; // Number of concentric tracks inside the doughnut body
-    const baseArcSpacing = 24; // Compact spacing for fine small dots
-    const rings = [];
-
-    for (let k = 0; k < ringTracks; k++) {
-      const t = k / (ringTracks - 1);
-      // Radius of this track inside the doughnut
-      const radius = innerRadius + t * (outerRadius - innerRadius);
-      const circumference = 2 * Math.PI * radius;
-      const count = Math.max(12, Math.round(circumference / baseArcSpacing));
-      const particles = [];
-      // Harmonic rotation across the doughnut band
-      const rotSpeed = (k % 2 === 0 ? 1 : -1) * (0.0018 / Math.sqrt(k + 1));
-
-      // 3D Torus profile curve (particles near center of the tube are slightly elevated)
-      const tubeHeight = Math.sin(t * Math.PI); // 0 at inner/outer edges, 1 at doughnut tube ridge
-
-      for (let i = 0; i < count; i++) {
-        const baseAngle = (i / count) * Math.PI * 2;
-        particles.push({
-          ringIndex: k,
-          radius: radius,
-          baseAngle: baseAngle,
-          currentAngle: baseAngle,
-          rotSpeed: rotSpeed,
-          tubeHeight: tubeHeight,
-          x: width / 2 + radius * Math.cos(baseAngle),
-          y: height / 2 + radius * Math.sin(baseAngle)
-        });
+    // Chromatic Aurora Orbs (Glow behind frosted glass)
+    const auroraOrbs = [
+      {
+        baseX: 0.2, baseY: 0.25,
+        radius: 380,
+        speedX: 0.35, speedY: 0.28,
+        colorDark: 'rgba(10, 132, 255, 0.22)',   // Sapphire Blue
+        colorLight: 'rgba(0, 113, 227, 0.14)'
+      },
+      {
+        baseX: 0.8, baseY: 0.2,
+        radius: 420,
+        speedX: -0.28, speedY: 0.32,
+        colorDark: 'rgba(191, 90, 242, 0.18)',  // Purple / Orchid
+        colorLight: 'rgba(175, 82, 222, 0.12)'
+      },
+      {
+        baseX: 0.3, baseY: 0.8,
+        radius: 400,
+        speedX: 0.30, speedY: -0.25,
+        colorDark: 'rgba(48, 209, 88, 0.16)',   // Emerald Mint
+        colorLight: 'rgba(40, 205, 65, 0.11)'
+      },
+      {
+        baseX: 0.85, baseY: 0.75,
+        radius: 440,
+        speedX: -0.22, speedY: -0.30,
+        colorDark: 'rgba(255, 159, 10, 0.16)',  // Sunset Coral / Amber
+        colorLight: 'rgba(255, 149, 0, 0.10)'
       }
+    ];
 
-      rings.push({
-        radius: radius,
-        particles: particles,
-        rotSpeed: rotSpeed
+    // Constellation / Identity Topology Nodes
+    const nodeCount = Math.min(75, Math.max(40, Math.floor((width * height) / 22000)));
+    const nodes = [];
+
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: Math.random() * 1.5 + 1.2,
+        baseAlpha: Math.random() * 0.4 + 0.3,
+        hue: [205, 270, 150, 35, 330][Math.floor(Math.random() * 5)]
       });
     }
 
     const startTime = performance.now();
 
-    function renderDoughnutCanvas() {
+    function renderAmbientMesh() {
       const now = performance.now();
       const elapsed = (now - startTime) / 1000;
       const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
@@ -317,159 +312,136 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ctx.clearRect(0, 0, width, height);
 
-      // Smoothly interpolate mouse position
-      mouse.x += (mouse.targetX - mouse.x) * 0.12;
-      mouse.y += (mouse.targetY - mouse.y) * 0.12;
+      // Smooth mouse interpolation
+      mouse.x += (mouse.targetX - mouse.x) * 0.15;
+      mouse.y += (mouse.targetY - mouse.y) * 0.15;
 
-      // When idle (> 2.5s), gently sway around screen center in a smooth figure-eight
-      const idleTime = now - mouse.lastMoveTime;
-      let targetCenterX = mouse.x;
-      let targetCenterY = mouse.y;
+      // =====================================================================
+      // 1. RENDER CHROMATIC AURORA LIGHT CAUSTICS
+      // =====================================================================
+      auroraOrbs.forEach(orb => {
+        const ox = (orb.baseX * width) + Math.cos(elapsed * orb.speedX) * (width * 0.12);
+        const oy = (orb.baseY * height) + Math.sin(elapsed * orb.speedY) * (height * 0.10);
+        
+        const grad = ctx.createRadialGradient(ox, oy, 0, ox, oy, orb.radius);
+        const color = isDarkMode ? orb.colorDark : orb.colorLight;
+        grad.addColorStop(0, color);
+        grad.addColorStop(0.65, color.replace(/[\d\.]+\)$/, isDarkMode ? '0.06)' : '0.03)'));
+        grad.addColorStop(1, 'transparent');
 
-      if (!mouse.active || idleTime > 2500) {
-        const driftT = elapsed * 0.4;
-        targetCenterX = width / 2 + Math.cos(driftT) * (width * 0.14) + Math.sin(driftT * 0.6) * 30;
-        targetCenterY = height / 2 + Math.sin(driftT * 0.8) * (height * 0.12);
-      }
-
-      // Fluid spring inertia follow for the doughnut center
-      const dx = targetCenterX - formationCenter.x;
-      const dy = targetCenterY - formationCenter.y;
-      formationCenter.vx = formationCenter.vx * 0.82 + dx * 0.05;
-      formationCenter.vy = formationCenter.vy * 0.82 + dy * 0.05;
-      formationCenter.x += formationCenter.vx;
-      formationCenter.y += formationCenter.vy;
-
-      // Subtle atmospheric doughnut rim guide
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.arc(formationCenter.x, formationCenter.y, innerRadius, 0, Math.PI * 2);
-      ctx.strokeStyle = isDarkMode ? 'rgba(255, 255, 255, 0.025)' : 'rgba(0, 113, 227, 0.035)';
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.arc(formationCenter.x, formationCenter.y, outerRadius, 0, Math.PI * 2);
-      ctx.strokeStyle = isDarkMode ? 'rgba(255, 255, 255, 0.02)' : 'rgba(0, 113, 227, 0.03)';
-      ctx.stroke();
-
-      // Update & Render each small particle in the doughnut
-      rings.forEach(ring => {
-        ring.particles.forEach(p => {
-          // Harmonic orbital rotation
-          p.currentAngle += p.rotSpeed;
-
-          // Target geometric position on doughnut around moving center
-          const idealX = formationCenter.x + p.radius * Math.cos(p.currentAngle);
-          const idealY = formationCenter.y + p.radius * Math.sin(p.currentAngle);
-
-          // Fluid elastic lag towards ideal position
-          p.x += (idealX - p.x) * 0.16;
-          p.y += (idealY - p.y) * 0.16;
-
-          // Distance from mouse cursor
-          const distToCursor = Math.hypot(p.x - mouse.x, p.y - mouse.y);
-
-          // Proximity Shape Morphing:
-          // Near mouse (<= 60px): pure small circle (morph = 0)
-          // Further away (>= 500px): small elongated pill capsule (morph = 1)
-          const rawMorph = Math.max(0, Math.min(1, (distToCursor - 60) / 440));
-          const morph = rawMorph * rawMorph * (3 - 2 * rawMorph); // smoothstep
-
-          // Small dot dimensions:
-          // Base small size: width = 3.2px, height = 3.2px (small dot)
-          // Morph to small pill: width = 2.4px, height = 13.5px
-          const pWidth = 3.2 - morph * 0.8;
-          const pHeight = pWidth + morph * 11.5;
-
-          // Radial alignment angle: points outward from cursor
-          const angle = Math.atan2(p.y - mouse.y, p.x - mouse.x) + Math.PI / 2;
-
-          // Screen-space Chromatic Color Transition across different parts of screen:
-          const normX = Math.max(0, Math.min(1, p.x / width));
-          const normY = Math.max(0, Math.min(1, p.y / height));
-
-          // 4-corner screen color mapping:
-          // Top-Left (0, 0): Vivid Cyan / Sky Blue (195°)
-          // Top-Right (1, 0): Orchid / Electric Purple (280°)
-          // Bottom-Left (0, 1): Mint / Emerald (155°)
-          // Bottom-Right (1, 1): Sunset Coral / Amber (350°)
-          const topHue = 195 * (1 - normX) + 280 * normX;
-          const botHue = 155 * (1 - normX) + 350 * normX;
-          const particleHue = (topHue * (1 - normY) + botHue * normY + elapsed * 10) % 360;
-
-          // Saturation, Lightness, and Alpha
-          let sat, lit, alpha;
-          if (isDarkMode) {
-            sat = 88 + (1 - morph) * 12;
-            lit = 60 + (1 - morph) * 20;
-            alpha = 0.40 + p.tubeHeight * 0.25 + (1 - morph) * 0.35;
-          } else {
-            // Light Frosted Glass: rich jewel tones
-            sat = 82 + (1 - morph) * 14;
-            lit = 44 + (1 - morph) * 12;
-            alpha = 0.50 + p.tubeHeight * 0.25 + (1 - morph) * 0.25;
-          }
-
-          // Draw Small Particle (Circle near mouse, Small Pill further away)
-          ctx.save();
-          ctx.translate(p.x, p.y);
-          ctx.rotate(angle);
-          ctx.fillStyle = `hsla(${particleHue}, ${sat}%, ${lit}%, ${alpha})`;
-
-          if (pHeight <= pWidth + 0.6) {
-            // Crisp Small Circular Dot
-            ctx.beginPath();
-            ctx.arc(0, 0, pWidth / 2, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Specular micro-core near cursor
-            if (distToCursor < 120) {
-              ctx.fillStyle = isDarkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.95)';
-              ctx.beginPath();
-              ctx.arc(0, 0, pWidth / 3.5, 0, Math.PI * 2);
-              ctx.fill();
-            }
-          } else {
-            // Sleek Small Pill / Capsule Shape
-            const radius = pWidth / 2;
-            const halfH = pHeight / 2;
-            const halfW = pWidth / 2;
-
-            ctx.beginPath();
-            ctx.moveTo(-halfW + radius, -halfH);
-            ctx.lineTo(halfW - radius, -halfH);
-            ctx.arc(halfW - radius, -halfH + radius, radius, -Math.PI / 2, 0);
-            ctx.lineTo(halfW, halfH - radius);
-            ctx.arc(halfW - radius, halfH - radius, radius, 0, Math.PI / 2);
-            ctx.lineTo(-halfW + radius, halfH);
-            ctx.arc(-halfW + radius, halfH - radius, radius, Math.PI / 2, Math.PI);
-            ctx.lineTo(-halfW, -halfH + radius);
-            ctx.arc(-halfW + radius, -halfH + radius, radius, Math.PI, Math.PI * 1.5);
-            ctx.closePath();
-            ctx.fill();
-          }
-
-          ctx.restore();
-        });
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(ox, oy, orb.radius, 0, Math.PI * 2);
+        ctx.fill();
       });
 
-      // Specular Light Halo around Cursor
-      const cursorDist = Math.hypot(formationCenter.x - mouse.x, formationCenter.y - mouse.y);
-      if (cursorDist < 250) {
-        const glowGrad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 110);
-        const glowColor = isDarkMode ? 'rgba(10, 132, 255, 0.08)' : 'rgba(0, 113, 227, 0.05)';
-        glowGrad.addColorStop(0, glowColor);
-        glowGrad.addColorStop(1, 'transparent');
-        ctx.fillStyle = glowGrad;
+      // Cursor Atmospheric Refraction Glow
+      if (mouse.active && mouse.x > 0 && mouse.y > 0) {
+        const cursorGlow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 220);
+        cursorGlow.addColorStop(0, isDarkMode ? 'rgba(10, 132, 255, 0.14)' : 'rgba(0, 113, 227, 0.09)');
+        cursorGlow.addColorStop(0.6, isDarkMode ? 'rgba(191, 90, 242, 0.05)' : 'rgba(175, 82, 222, 0.03)');
+        cursorGlow.addColorStop(1, 'transparent');
+        ctx.fillStyle = cursorGlow;
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 110, 0, Math.PI * 2);
+        ctx.arc(mouse.x, mouse.y, 220, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      requestAnimationFrame(renderDoughnutCanvas);
+      // =====================================================================
+      // 2. UPDATE & RENDER CONSTELLATION NODES & LASER LINKS
+      // =====================================================================
+      const maxDist = 125;
+
+      nodes.forEach(node => {
+        // Organic floating motion
+        node.x += node.vx;
+        node.y += node.vy;
+
+        // Wrap around viewport edges smoothly
+        if (node.x < -20) node.x = width + 20;
+        if (node.x > width + 20) node.x = -20;
+        if (node.y < -20) node.y = height + 20;
+        if (node.y > height + 20) node.y = -20;
+
+        // Cursor interactive magnetic repulsion
+        let proximityBoost = 0;
+        if (mouse.active) {
+          const dx = node.x - mouse.x;
+          const dy = node.y - mouse.y;
+          const dist = Math.hypot(dx, dy);
+
+          if (dist < mouse.radius && dist > 0) {
+            const force = (1 - dist / mouse.radius) * 1.6;
+            node.x += (dx / dist) * force;
+            node.y += (dy / dist) * force;
+            proximityBoost = (1 - dist / mouse.radius);
+          }
+        }
+
+        // Draw Node Dot
+        const sat = isDarkMode ? 85 : 80;
+        const lit = isDarkMode ? (55 + proximityBoost * 30) : (42 + proximityBoost * 20);
+        const alpha = Math.min(1, node.baseAlpha + proximityBoost * 0.5);
+
+        ctx.fillStyle = `hsla(${node.hue}, ${sat}%, ${lit}%, ${alpha})`;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius + proximityBoost * 1.2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Specular center dot for illuminated nodes
+        if (proximityBoost > 0.3) {
+          ctx.fillStyle = isDarkMode ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.95)';
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.radius * 0.6, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      });
+
+      // Draw Synaptic Connection Threads between Nodes
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.hypot(dx, dy);
+
+          if (dist < maxDist) {
+            const linkAlpha = (1 - dist / maxDist) * (isDarkMode ? 0.22 : 0.16);
+            ctx.strokeStyle = isDarkMode 
+              ? `rgba(148, 163, 184, ${linkAlpha})` 
+              : `rgba(0, 113, 227, ${linkAlpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+
+        // Interactive dynamic laser thread to cursor
+        if (mouse.active) {
+          const dx = nodes[i].x - mouse.x;
+          const dy = nodes[i].y - mouse.y;
+          const dist = Math.hypot(dx, dy);
+
+          if (dist < mouse.radius) {
+            const cursorLinkAlpha = (1 - dist / mouse.radius) * (isDarkMode ? 0.45 : 0.35);
+            ctx.strokeStyle = isDarkMode 
+              ? `rgba(10, 132, 255, ${cursorLinkAlpha})` 
+              : `rgba(0, 113, 227, ${cursorLinkAlpha})`;
+            ctx.lineWidth = 1.2;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(renderAmbientMesh);
     }
 
-    requestAnimationFrame(renderDoughnutCanvas);
+    requestAnimationFrame(renderAmbientMesh);
   }
 });
+
 
