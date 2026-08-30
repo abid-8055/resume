@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const directPdfBtn = document.getElementById('direct-pdf-btn');
   const headerPdfBtn = document.getElementById('header-pdf-btn');
   const appThemeBtn = document.getElementById('app-theme-btn');
-  const copyDetailsBtn = document.getElementById('copy-details-btn');
   const toastContainer = document.getElementById('toast-container');
   const navTabs = document.querySelectorAll('.nav-tab');
   const sections = document.querySelectorAll('.content-section');
@@ -112,24 +111,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // 4. COPY CONTACT & RESUME DOWNLOADS
+  // 4. AUTO-COPY CONTACT BUTTONS (EMAIL & PHONE) & RESUME DOWNLOADS
   // =========================================================================
-  if (copyDetailsBtn) {
-    copyDetailsBtn.addEventListener('click', () => {
-      const contactText = `Abid Siddiqui | Cybersecurity Analyst Level 2 (User Access Management)\nEmail: abidsiddiqui2002@gmail.com\nPhone: +91-9008433790\nLocation: Bengaluru, Karnataka, India\nDegree: Bachelor in Computer Science (Reva University)`;
-      navigator.clipboard.writeText(contactText).then(() => {
-        showToast('Contact info copied to clipboard!');
-        const textSpan = document.getElementById('copy-btn-text');
-        if (textSpan) {
-          const orig = textSpan.textContent;
-          textSpan.textContent = 'Copied!';
-          setTimeout(() => { textSpan.textContent = orig; }, 2000);
-        }
+  const autoCopyBtns = document.querySelectorAll('.auto-copy-btn');
+  autoCopyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const textToCopy = btn.getAttribute('data-copy');
+      if (!textToCopy) return;
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        showToast(`Copied ${textToCopy} to clipboard!`);
+
+        const popupText = btn.querySelector('.copy-popup-text');
+        const popupIcon = btn.querySelector('.copy-popup-icon');
+        btn.classList.add('copied');
+        if (popupText) popupText.textContent = 'Copied!';
+        if (popupIcon) popupIcon.textContent = '✓';
+
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          if (popupText) popupText.textContent = 'Click to copy';
+          if (popupIcon) popupIcon.textContent = '📋';
+        }, 2000);
       }).catch(() => {
-        showToast('Failed to copy. Please manually select.');
+        showToast('Failed to copy to clipboard. Please select manually.');
       });
     });
-  }
+  });
 
   const triggerPdfDownload = () => {
     showToast("Opening Resume PDF...");
